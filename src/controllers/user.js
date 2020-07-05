@@ -17,19 +17,19 @@ class UserController {
     let connection = null
     try {
       connection = await this.db.establishConnection()
-      const {email, password, document, lastName, name} = req.body
-      if (!email || !password || !document || !lastName || !name) {
+      const {email, password, documento, apellido, nombre} = req.body
+      if (!email || !password || !documento || !apellido || !nombre) {
         throw new ErrorHandler(400, 'Bad request')
       }
       const encryptedPassword = await crypto.createHash('sha1').update(password).digest('hex'),
-        user = await this.user.getUser(connection, document)
+        user = await this.user.getUser(connection, documento)
       if (user && user.length) {
         throw new ErrorHandler (403, 'User already exists')
       }
       req.body.encryptedPassword = encryptedPassword
-      await this.user.createUser(connection, req.body)
+      const createdUser = await this.user.createUser(connection, req.body)
       await this.db.endConnection(connection)
-      return res.status(200).json('User created')
+      return res.status(200).json(createdUser)
     } catch (e) {
       if (connection) {
         await this.db.endConnection(connection)

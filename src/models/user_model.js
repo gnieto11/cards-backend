@@ -17,9 +17,9 @@ class UserModel {
   createUser (connection, params) {
     const query =  `INSERT INTO usuarios (nombre, apellido, documento, password, email) VALUES (?, ?, ?, ?, ?)`
     return this.db.runQuery(connection, query, [
-      params.name,
-      params.lastName,
-      params.document,
+      params.nombre,
+      params.apellido,
+      params.documento,
       params.encryptedPassword,
       params.email
     ])
