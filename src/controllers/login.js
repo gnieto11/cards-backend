@@ -23,7 +23,7 @@ class LoginController {
         throw new ErrorHandler(400, 'Bad request')
       }
       const encryptedPassword = await crypto.createHash('sha1').update(password).digest('hex'),
-        user = await this.user.getUserByEmail(connection, email)
+        user = await this.user.getUser(connection, email)
       if (user && user.length) {
         if (email !== user[0].email || encryptedPassword !== user[0].password) {
           return res.status(403).json(false)
