@@ -3,6 +3,7 @@ import { attachControllers } from '@decorators/express'
 import { handleError } from '../middlewares/error'
 import Access from '../middlewares/access'
 import LoginController from '../controllers/login'
+import TaskController from '../controllers/task'
 
 class CustomRoutes {
   constructor (app) {
@@ -11,7 +12,8 @@ class CustomRoutes {
   createRoutes () {
     attachControllers(this.app, [
       LoginController,
-      UserController
+      UserController,
+      TaskController
     ])
     this.app.use((err, req, res, next) => { handleError(err, res) })
     this.app.use(Access)
