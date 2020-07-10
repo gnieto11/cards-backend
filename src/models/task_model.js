@@ -19,6 +19,11 @@ class TaskModel {
     return this.db.runQuery(connection, query, [titulo, descripcion, id])
   }
 
+  deleteTaskById (connection, id) {
+    const query = `UPDATE tareas SET completado = 0 WHERE id = ?`
+    return this.db.runQuery(connection, query, [id])
+  }
+
 }
 
 module.exports = TaskModel

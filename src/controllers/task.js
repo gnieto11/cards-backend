@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Put } from '@decorators/express'
+import { Controller, Post, Get, Put, Delete } from '@decorators/express'
 import database from '../models/datebase'
 import { ErrorHandler } from '../middlewares/error'
 import TaskModel from '../models/task_model'
@@ -52,6 +52,29 @@ class TaskController {
       return next(e)
     }
   }
+
+  @Delete('/:taskId', [
+    new Access()
+  ])
+  async deleteTask (req, res, next) {
+    let connection = null
+    try {
+      const {taskId} = req.params
+      if (!taskId) {
+        throw new ErrorHandler(400, 'Bad request')
+      }
+      connection = await this.db.establishConnection()
+      const task = await this.model.deleteTaskById(connection, taskId)
+      await this.db.endConnection(connection)
+      return res.status(200).json(task)
+    } catch (e) {
+      if (connection) {
+        await this.db.endConnection(connection)
+      }
+      return next(e)
+    }
+  }
+
   @Get('/:userId', [
     new Access()
   ])
