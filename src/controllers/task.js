@@ -2,6 +2,7 @@ import { Controller, Post, Get, Put } from '@decorators/express'
 import database from '../models/datebase'
 import { ErrorHandler } from '../middlewares/error'
 import TaskModel from '../models/task_model'
+import Access from '../middlewares/access'
 
 @Controller('/api/task')
 class TaskController {
@@ -9,7 +10,9 @@ class TaskController {
     this.db = new database()
     this.model = new TaskModel()
   }
-  @Post('/')
+  @Post('/', [
+    new Access()
+  ])
   async createTask (req, res, next) {
     let connection = null
     try {
@@ -28,7 +31,9 @@ class TaskController {
       return next(e)
     }
   }
-  @Put('/')
+  @Put('/', [
+    new Access()
+  ])
   async editTask (req, res, next) {
     let connection = null
     try {
@@ -47,7 +52,9 @@ class TaskController {
       return next(e)
     }
   }
-  @Get('/')
+  @Get('/', [
+    new Access()
+  ])
   async getAllTask (req, res, next) {
     let connection = null
     try {
