@@ -18,6 +18,10 @@ class UserModel {
       params.email
     ])
   }
+  userData (connection) {
+    const query = `SELECT *FROM usuarios`
+    return this.db.runQuery(connection, query)
+  }
 }
 
 module.exports = UserModel

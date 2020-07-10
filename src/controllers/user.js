@@ -3,7 +3,8 @@ import { ErrorHandler } from '../middlewares/error'
 import database from '../models/datebase'
 import UserModel from '../models/user_model'
 import crypto from 'crypto'
-
+import Access from '../middlewares/access'
+import jwtDecode from 'jwt-decode'
 
 @Controller ('/api/user')
 class UserController {
@@ -50,6 +51,29 @@ class UserController {
       const user = await this.user.getUser(connection, email)
       await this.db.endConnection(connection)
       return res.status(200).json(!!(user && user.length))
+    } catch (e) {
+      if (connection) {
+        await this.db.endConnection(connection)
+      }
+      return next(e)
+    }
+  }
+
+  @Get('/', [
+    new Access()
+  ])
+  async userInfo (req, res, next) {
+    let connection = null
+    try {
+      connection = await this.db.establishConnection()
+      const token = req.headers['access-token'],
+        decoded = jwtDecode(token)
+      if (!decoded) {
+        throw new ErrorHandler(403, 'Not authorized')
+      }
+      const user = await this.user.getUser(connection, decoded.email)
+      await this.db.endConnection(connection)
+      return res.status(200).json(user)
     } catch (e) {
       if (connection) {
         await this.db.endConnection(connection)

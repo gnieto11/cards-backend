@@ -16,12 +16,12 @@ class TaskController {
   async createTask (req, res, next) {
     let connection = null
     try {
-      const {titulo, descripcion} = req.body
-      if (!titulo || !descripcion) {
+      const {titulo, descripcion, id_usuario} = req.body
+      if (!titulo || !descripcion || !id_usuario ) {
         throw new ErrorHandler(400, 'Bad request')
       }
       connection = await this.db.establishConnection()
-      const task = await this.model.insertTask(connection, descripcion, titulo)
+      const task = await this.model.insertTask(connection, descripcion, titulo, id_usuario)
       await this.db.endConnection(connection)
       return res.status(200).json(task)
     } catch (e) {
@@ -52,14 +52,14 @@ class TaskController {
       return next(e)
     }
   }
-  @Get('/', [
+  @Get('/:userId', [
     new Access()
   ])
   async getAllTask (req, res, next) {
     let connection = null
     try {
       connection = await this.db.establishConnection()
-      const task = await this.model.allTask(connection)
+      const task = await this.model.allTask(connection, req.params.userId)
       await this.db.endConnection(connection)
       return res.status(200).json(task)
     } catch (e) {

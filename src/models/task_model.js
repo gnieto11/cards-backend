@@ -4,14 +4,14 @@ class TaskModel {
     this.db = new database()
   }
 
-  insertTask (connection, descripcion, titulo) {
-    const query = `INSERT INTO tareas (titulo, descripcion) VALUES (?, ?)`
-    return this.db.runQuery(connection, query, [titulo, descripcion])
+  insertTask (connection, descripcion, titulo, id_usuario) {
+    const query = `INSERT INTO tareas (titulo, descripcion, id_usuario) VALUES (?, ?, ?)`
+    return this.db.runQuery(connection, query, [titulo, descripcion, id_usuario])
   }
 
-  allTask (connection) {
-    const query = `SELECT *FROM tareas WHERE completado = 1`
-    return this.db.runQuery(connection, query)
+  allTask (connection, userId) {
+    const query = `SELECT *FROM tareas WHERE completado = 1 AND id_usuario = ?`
+    return this.db.runQuery(connection, query, [userId])
   }
 
   updateTask(connection, descripcion, titulo, id) {
