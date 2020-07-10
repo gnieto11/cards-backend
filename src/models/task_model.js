@@ -10,8 +10,13 @@ class TaskModel {
   }
 
   allTask (connection) {
-    const query = `SELECT *from tareas`
+    const query = `SELECT *FROM tareas WHERE completado = 1`
     return this.db.runQuery(connection, query)
+  }
+
+  updateTask(connection, descripcion, titulo, id) {
+    const query = `UPDATE tareas SET titulo = ?, descripcion = ? WHERE id = ?`
+    return this.db.runQuery(connection, query, [titulo, descripcion, id])
   }
 
 }
