@@ -2,6 +2,7 @@ import { Controller, Post, Get } from '@decorators/express'
 import database from '../models/datebase'
 import { ErrorHandler } from '../middlewares/error'
 import TaskModel from '../models/task_model'
+import Access  from '../middlewares/access'
 
 @Controller('/api/task')
 class TaskController {

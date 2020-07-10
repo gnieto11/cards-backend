@@ -7,14 +7,13 @@ class Access {
     //TODO constructor
   }
   use (req, res, next) {
-    const token = req.headers['access-token']
+    let token = req.headers['access-token']
     if (token) {
       jwt.verify(token, secretKey.secret_key, (err, decoded) => {
         if (err) {
           throw new ErrorHandler(401, 'Invalid token')
         } else {
-          req.decoded = decoded
-          next()
+          return next()
         }
       })
     } else {
