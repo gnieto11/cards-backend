@@ -13,6 +13,7 @@ class Access {
         if (err) {
           throw new ErrorHandler(401, 'Invalid token')
         } else {
+          req.decoded = decoded
           return next()
         }
       })
