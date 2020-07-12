@@ -1,3 +1,5 @@
+/* global process */
+const port = process.env.PORT || 3000
 import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
@@ -17,6 +19,6 @@ const routes = new CustomRoutes(app)
 routes.createRoutes()
 
 // Start server
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log('Server started at port 3000')
 })
