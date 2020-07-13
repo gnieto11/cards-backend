@@ -5,10 +5,10 @@ class database {
   constructor() {
     this.pool = mysql.createPool({
       connectionLimit: 15,
-      host: process.env.CLEARDB_HOST || 'localhost',
-      user: process.env.CLEARDB_USER || 'root',
-      password: process.env.CLEARDB_PASSWORD || 'ROOT',
-      database: process.env.CLEARDB_DATABASE || 'sasuke'
+      host: 'us-cdbr-east-02.cleardb.com',
+      user: 'b29b7fa696af9a',
+      password: 'bbc089e9',
+      database: 'heroku_eee006e252ab492'
     })
   }
 
