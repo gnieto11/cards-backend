@@ -4,6 +4,7 @@ import mysql from 'mysql'
 class database {
   constructor() {
     this.pool = mysql.createPool({
+      //set env
       connectionLimit: 15,
       host: 'us-cdbr-east-02.cleardb.com',
       user: 'b29b7fa696af9a',
