@@ -1,13 +1,14 @@
 import mysql from 'mysql'
+/* global process */
 
 class database {
   constructor() {
     this.pool = mysql.createPool({
       connectionLimit: 15,
-      host: 'localhost',
-      user: 'root',
-      password: 'ROOT',
-      database: 'sasuke'
+      host: process.env.CLEARDB_HOST || 'localhost',
+      user: process.env.CLEARDB_USER || 'root',
+      password: process.env.CLEARDB_PASSWORD || 'ROOT',
+      database: process.env.CLEARDB_DATABASE || 'sasuke'
     })
   }
 
