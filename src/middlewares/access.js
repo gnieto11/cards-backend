@@ -6,7 +6,6 @@ class Access {
   constructor(options = {}) {
     //TODO constructor
   }
-
   use (req, res, next) {
     let token = req.headers['access-token']
     if (token) {
