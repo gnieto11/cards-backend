@@ -6,10 +6,10 @@ class database {
     this.pool = mysql.createPool({
       //set env
       connectionLimit: 15,
-      host: 'us-cdbr-east-02.cleardb.com',
-      user: 'b29b7fa696af9a',
-      password: 'bbc089e9',
-      database: 'heroku_eee006e252ab492'
+      host: 'localhost',
+      user: 'root',
+      password: 'ROOT',
+      database: 'sasuke'
     })
   }
 
