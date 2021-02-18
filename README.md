@@ -5,6 +5,8 @@
 [![Twitter Follow](https://img.shields.io/twitter/follow/gonzalonietot?style=social)](https://twitter.com/gonzalonietot)
 [![Linkedin_Follow](https://img.shields.io/badge/LinkedIn-blu?style=flat&logo=linkedin&labelColor=blue)](https://www.linkedin.com/in/gonzalo-nieto-03508a199/)
 
+La función de este mini proyecto es poder loguear un usuario, y que él pueda crear sus propias tareas y recordatorios.
+
 Tech stack:
 
 * Node
