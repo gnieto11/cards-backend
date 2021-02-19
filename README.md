@@ -6,7 +6,7 @@ My networks:
 [![Twitter Follow](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/gonzalonietot)
 [![Linkedin_Follow](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/gonzalo-nieto-03508a199/)
 
-La función de este proyecto es poder loguear un usuario, y que él pueda crear sus propias tareas y recordatorios.
+The function of this project is to be able to log in as a user, and that it can create its own tasks and reminders.
 
 Tech stack:
 
